@@ -1,6 +1,6 @@
 name: Submit New Action
 description: Submit a new action schema which, upon review, will be added to the repo.
-title: "[New GPT Action]: "
+title: "[New GPT Action]: <action title here>"
 labels: [new-schema]
 body:
   - type: markdown
@@ -10,7 +10,7 @@ body:
     id: name
     attributes:
       label: "📂 Name"
-      description: "The name of this action for the repo. It's recommended you **set this to whatever the `title` is in your schema.**"
+      description: "The name of this action for the repo. It's recommended you **set this to whatever the `title` is in your schema.** Look in the repo to ensure that this is a unique name, otherwise your action will be rejected."
       placeholder: "Title here..."
     validations:
       required: true
