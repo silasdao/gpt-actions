@@ -8,22 +8,24 @@ def new_readme_entry(info, schema):
     format = info["format"].lower()
     return f"""
 <!-- START_SCHEMA: "{info['title']}" -->
-<tr></tr><tr><td><details><summary><b>{info['title']}</b> - {info['shortdesc']}</summary><p><ul>
+<tr></tr><tr><td><details><summary><b>{info['title']}</b> - <i>{info['shortdesc']}</i></summary><p><ul>
 <li><b>Author:</b> <a href="https://github.com/{info['author']}">{info['author']}</a></li>
 <li><b>Schema format:</b> {format.upper()}</li>
 <li><b>Authentication type:</b> {info['auth']}</li></ul></p>
-<p><b>Description:</b><br><i>{info['desc']}</i></p>
+<p><b>Description:</b><br>
+
+{info['desc']}</p>
 <p><b>Import URL:</b><br>
 
 ```
 https://raw.githubusercontent.com/bapo2/gpt-actions/main/schemas/{info['folder_title']}/schema.{format}
 ```
-</p><p><b>Schema:</b>
+</p><details><summary><b>Schema</b></summary>
 
 ```{format}
 {schema}
 ```
-</p></details></td></tr>
+</details></details></td></tr>
 <!-- END_SCHEMA: "{info['title']}" -->
 """
 
