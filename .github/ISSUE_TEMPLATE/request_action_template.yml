@@ -1,0 +1,24 @@
+name: Request an Action
+description: Request a new action to be added to the repo by a maintainer.
+title: "[Action Request]: <action title here>"
+labels: [schema-request]
+body:
+  - type: markdown
+    attributes:
+      value: "👋 Hi there! Please fill out the fields bellow to request that we add a new action to the repo. Please note that **this is not a guarantee that your action will be added**. We will review your request and get back to you as soon as possible."
+  - type: textarea
+    id: name
+    attributes:
+      label: "📝 Description"
+      description: "A description of what this action should do. **Please try and be thorough if you want your action to do something specific.**"
+      placeholder: "Description here..."
+    validations:
+      required: true
+  - type: input
+    id: short_desc
+    attributes:
+      label: "🔗 Source(s)"
+      description: "The URL(s) of one or more endpoints that this action should use. You can put 'N/A' if you don't have any or if you have something else in mind."
+      placeholder: "URL(s) here..."
+    validations:
+      required: true
