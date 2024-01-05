@@ -1,5 +1,3 @@
-<h1 align="center">🚧 REPO SETUP STILL IN PROGRESS, PLEASE BE PATIENT</h1>
-
 <!-- Header -->
 <h1 align="center">
     <picture>
