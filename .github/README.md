@@ -13,7 +13,7 @@
 <!-- Badges -->
 <h4 align="center">
     <a href="https://github.com/bapo2/gpt-actions/issues/new?assignees=&labels=new-schema&projects=&template=new_action_template.yml&title=%5BNew+GPT+Action%5D%3A+">
-        <img alt="Actions contributed" src="https://img.shields.io/badge/4%20actions%20contributed-ef571d?style=flat-square&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHdpZHRoPSIzNnB4IiBoZWlnaHQ9IjM2cHgiIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNvbG9yPSIjZmZmZmZmIj48cGF0aCBkPSJNNiAxMkgxMk0xOCAxMkgxMk0xMiAxMlY2TTEyIDEyVjE4IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48L3BhdGg%2BPC9zdmc%2B">
+        <img alt="Actions contributed" src="https://img.shields.io/badge/6%20actions%20contributed-ef571d?style=flat-square&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHdpZHRoPSIzNnB4IiBoZWlnaHQ9IjM2cHgiIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNvbG9yPSIjZmZmZmZmIj48cGF0aCBkPSJNNiAxMkgxMk0xOCAxMkgxMk0xMiAxMlY2TTEyIDEyVjE4IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48L3BhdGg%2BPC9zdmc%2B">
     </a>
     <a href="https://github.com/bapo2/gpt-actions/issues?q=is%3Aissue+is%3Aopen+label%3Aschema-valid+">
         <img alt="Schemas awaiting approval" src="https://img.shields.io/github/issues/bapo2/gpt-actions/schema-valid?style=flat-square&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHdpZHRoPSIzNnB4IiBoZWlnaHQ9IjM2cHgiIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNvbG9yPSIjZmZmZmZmIj48cGF0aCBkPSJNMTMuNSA2TDEwIDE4LjUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNNi41IDguNUwzIDEyTDYuNSAxNS41IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48L3BhdGg%2BPHBhdGggZD0iTTE3LjUgOC41TDIxIDEyTDE3LjUgMTUuNSIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI%2BPC9wYXRoPjwvc3ZnPg%3D%3D&label=schemas%20awaiting%20approval&color=21bf1b">
@@ -215,6 +215,165 @@ components:
 ```
 </details></details></td></tr>
 <!-- END_SCHEMA: "DevDocs Reader" -->
+
+<!-- START_SCHEMA: "Github File Lister" -->
+<tr></tr><tr><td><details><summary><b>Github File Lister</b> - <i>Allows for the traversal of Github repos similar to using the 'ls' command.</i></summary><p><ul>
+<li><b>Author:</b> <a href="https://github.com/bapo2">bapo2</a></li>
+<li><b>Schema format:</b> JSON</li>
+<li><b>Authentication type:</b> API Key [Bearer]</li></ul></p>
+<p><b>Description:</b><br>
+
+This allows GPT to use the `api.github.com` endpoint to traverse directories in a repository similar to how one would use the `ls` command. It also allows fetching of a given file's `download_url` to pass to the file reader if both actions are present on the same GPT.
+
+Providing an API key is optional when reading from public repos, but is required when reading from private ones. To create one for GPT to use, simply go to [the "developer settings" page](https://github.com/settings/tokens) and create a PAT with read-access to whatever you want GPT to be able to view.</p>
+<p><b>Import URL:</b><br>
+
+```
+https://raw.githubusercontent.com/bapo2/gpt-actions/main/schemas/github-file-lister/schema.json
+```
+</p><details><summary><b>Schema</b></summary>
+
+```json
+{
+    "info": {
+        "title": "Github File Lister",
+        "description": "Acts like the 'ls' command and can list the contents of directories on Github repos. Can not be used to read file contents directly, as it will return base64.",
+        "version": "v1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://api.github.com"
+        }
+    ],
+    "paths": {
+        "/repos/{owner}/{repo}/contents/{path}": {
+            "get": {
+                "description": "Gets the contents (files) of a specific repo/directory. The 'download_url' property can be used to get the path for the file reader. Make sure to use the 'Github File Reader' action when trying to read contents (if its available).",
+                "operationId": "listGithubFiles",
+                "parameters": [
+                    {
+                        "name": "owner",
+                        "in": "path",
+                        "description": "The owner of the repository (username).",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "repo",
+                        "in": "path",
+                        "description": "The name of the repository itself.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "path",
+                        "in": "path",
+                        "description": "The path to the file or folder (leave this blank to just get the root of the repo). This is case-sensetive.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "deprecated": false
+            }
+        }
+    },
+    "components": {
+        "schemas": {}
+    }
+}
+```
+</details></details></td></tr>
+<!-- END_SCHEMA: "Github File Lister" -->
+
+<!-- START_SCHEMA: "Github File Reader" -->
+<tr></tr><tr><td><details><summary><b>Github File Reader</b> - <i>Can read files on Github via their "raw" URLs.</i></summary><p><ul>
+<li><b>Author:</b> <a href="https://github.com/bapo2">bapo2</a></li>
+<li><b>Schema format:</b> JSON</li>
+<li><b>Authentication type:</b> API Key [Bearer]</li></ul></p>
+<p><b>Description:</b><br>
+
+This allows GPT to read a file from Github via its `raw.githubusercontent.com` URL. When pairs with the "Github File Lister" action, this is capable of allowing GPT to look through and read any repository accessible to it.
+
+Providing an API key is optional when reading from public repos, but is required when reading from private ones. To create one for GPT to use, simply go to [the "developer settings" page](https://github.com/settings/tokens) and create a PAT with read-access to whatever you want GPT to be able to view.</p>
+<p><b>Import URL:</b><br>
+
+```
+https://raw.githubusercontent.com/bapo2/gpt-actions/main/schemas/github-file-reader/schema.json
+```
+</p><details><summary><b>Schema</b></summary>
+
+```json
+{
+    "info": {
+        "title": "Github File Reader",
+        "description": "Request the raw contents of a file from a Github repository given its path.",
+        "version": "v1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://raw.githubusercontent.com"
+        }
+    ],
+    "paths": {
+        "/{owner}/{repo}/{branch}/{filepath}": {
+            "get": {
+                "description": "Returns the raw contents of a file from a Github repository given its path. The relevant details can be queried from the 'Github File Lister' action if it is available.",
+                "operationId": "readGithubFile",
+                "parameters": [
+                    {
+                        "name": "owner",
+                        "in": "path",
+                        "description": "The owner of the repository (username).",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "repo",
+                        "in": "path",
+                        "description": "The name of the repository.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "branch",
+                        "in": "path",
+                        "description": "The branch of the repository (this is 'main' by default).",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "filepath",
+                        "in": "path",
+                        "description": "The path to the file.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "deprecated": false
+            }
+        }
+    },
+    "components": {
+        "schemas": {}
+    }
+}
+```
+</details></details></td></tr>
+<!-- END_SCHEMA: "Github File Reader" -->
 
 <!-- START_SCHEMA: "Semantic Scholar Search" -->
 <tr></tr><tr><td><details><summary><b>Semantic Scholar Search</b> - <i>A GET-request based search operation for papers on Semantic Scholar.</i></summary><p><ul>
