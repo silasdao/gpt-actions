@@ -12,14 +12,14 @@ def set_var(key, value, file_path):
 def validate(issue_labels, issue_body):
     # Check if the issue is a new schema
     if "new-schema" not in issue_labels: return issue_body, issue_labels, ""
-        
+
     # Get the title, format, schema, and auth from the issue body
     try:
         body_pattern = r"### 📂 Name\s*\n*(.*?)\n*?\s*### 📰 Short Description\s*\n*(.*?)\n*?\s*### 📜 Format\s*\n*(.*?)\n*?\s*### 📋 Schema\s*\n*```(?:json|yaml|txt)\n([\s\S]*?)\n```(?:\n*?)\s*### 🔑 Authentication\s*\n*(.*?)\n*?\s*### 📝 Description\s*\n*([\s\S]*?)(?=\n*###|$)"
         title, _, format, schema, auth, _ = re.findall(body_pattern, issue_body, re.DOTALL)[0]
         issue_body = issue_body.replace("```txt", f"```{format.lower()}")
     except IndexError: return issue_body, "schema-invalid-issue", "❌ **Automatic validation of new schema failed.** Issue is not formatted correctly."
-    
+
     # Check if the title, format, schema, and auth are valid
     checks = [
         (not title, "schema-invalid-title"),
@@ -27,7 +27,7 @@ def validate(issue_labels, issue_body):
         (not schema, "schema-invalid-schema"),
         (not auth or auth not in ['No authentication', 'API Key [Basic]', 'API Key [Bearer]', 'API Key [Other]', 'OAuth [Default]', 'OAuth [Basic auth header]'], "schema-invalid-auth")
     ]
-    
+
     # Return if any of the checks failed
     for check, label in checks:
         if check: return issue_body, label, f"❌ **Automatic validation of new {format.upper()} schema failed.** Check of field {label.replace('schema-invalid-', '').upper()} failed."
@@ -41,10 +41,10 @@ def validate(issue_labels, issue_body):
             schema_obj = yaml.safe_load(schema)
             linter.run(schema, YamlLintConfig('extends: default'))
     except: return issue_body, "schema-invalid-schema", f"❌ **Automatic validation of new schema failed.** Schema is not a valid {format.upper()}."
-    
-    # Check for required properties
-    required_properties = ["info", "servers", "paths"]
-    if format == "json" or format == "yaml":
+
+    if format in ["json", "yaml"]:
+        # Check for required properties
+        required_properties = ["info", "servers", "paths"]
         for prop in required_properties:
             if prop not in schema_obj:
                 return issue_body, "schema-invalid-schema", f"❌ **Automatic validation of new schema failed.** Schema is missing required property `{prop}`."
@@ -54,7 +54,7 @@ def validate(issue_labels, issue_body):
             return issue_body, "schema-invalid-schema", "❌ **Automatic validation of new schema failed.** No valid server found in `servers`."
         if not schema_obj['paths'] or not isinstance(schema_obj['paths'], dict) or not list(schema_obj['paths'].keys()):
             return issue_body, "schema-invalid-schema", "❌ **Automatic validation of new schema failed.** No valid path found in `paths`."
-    
+
     # Return if the schema is valid
     return issue_body, "schema-valid", f"✅ **Automatic validation of new {format.upper()} schema succeeded.** Issue is ready for manual review."
 
