@@ -37,9 +37,14 @@ def slugify(title):
 # Updates the README with the new schema directory
 def update_readme(readme_path, directory):
     with open(readme_path, 'r') as f: readme_text = f.read()
-    schema_directory_section = re.search(r'<!-- START_SCHEMA_DIRECTORY -->(.*?)<!-- END_SCHEMA_DIRECTORY -->', readme_text, re.DOTALL)
-    if schema_directory_section: updated_readme = readme_text.replace(schema_directory_section.group(1), directory)
-    else: updated_readme = readme_text + "<!-- START_SCHEMA_DIRECTORY -->" + directory + "<!-- END_SCHEMA_DIRECTORY -->"
+    if schema_directory_section := re.search(
+        r'<!-- START_SCHEMA_DIRECTORY -->(.*?)<!-- END_SCHEMA_DIRECTORY -->',
+        readme_text,
+        re.DOTALL,
+    ):
+        if schema_directory_section: updated_readme = readme_text.replace(schema_directory_section.group(1), directory)
+    else:
+        updated_readme = f"{readme_text}<!-- START_SCHEMA_DIRECTORY -->{directory}<!-- END_SCHEMA_DIRECTORY -->"
     updated_readme = re.sub(r'https://img.shields.io/badge/(\d+)%20actions%20contributed', r'https://img.shields.io/badge/' + str(len(os.listdir(os.path.join('repo', 'schemas')))) + r'%20actions%20contributed', updated_readme)
     return updated_readme
 
